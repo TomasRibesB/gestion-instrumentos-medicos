@@ -1,6 +1,6 @@
 'use client';
 
-import { MoreHorizontal, Building, Phone, Mail } from 'lucide-react';
+import { MoreHorizontal, Building, Mail } from 'lucide-react';
 
 const CLIENTS = [
   { id: 1, name: 'OSDE', type: 'Obra Social', term: '30 días', contact: 'Juan Pérez', email: 'finanzas@osde.com.ar' },
@@ -12,47 +12,49 @@ const CLIENTS = [
 
 export default function ClientTable() {
   return (
-    <div className="card" style={{ padding: 0 }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
-        <thead style={{ background: '#f8fafc', borderBottom: '1px solid var(--border-color)' }}>
-          <tr>
-            <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-secondary)' }}>Cliente</th>
-            <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-secondary)' }}>Tipo</th>
-            <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-secondary)' }}>Plazo Pago</th>
-            <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-secondary)' }}>Contacto</th>
-            <th style={{ padding: '1rem' }}></th>
-          </tr>
-        </thead>
-        <tbody>
-          {CLIENTS.map((client) => (
-            <tr key={client.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-              <td style={{ padding: '1rem' }}>
-                <div style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Building size={16} color="var(--text-secondary)" />
-                  {client.name}
-                </div>
-              </td>
-              <td style={{ padding: '1rem' }}>{client.type}</td>
-              <td style={{ padding: '1rem' }}>
-                <span className="badge" style={{ background: '#f1f5f9', color: 'var(--text-secondary)' }}>
-                  {client.term}
-                </span>
-              </td>
-              <td style={{ padding: '1rem' }}>
-                <div>{client.contact}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.25rem', marginTop: '0.25rem' }}>
-                  <Mail size={12} /> {client.email}
-                </div>
-              </td>
-              <td style={{ padding: '1rem', textAlign: 'center' }}>
-                <button className="btn" style={{ padding: '0.25rem' }}>
-                  <MoreHorizontal size={16} color="var(--text-secondary)" />
-                </button>
-              </td>
+    <div className="rounded-md border bg-card">
+      <div className="relative w-full overflow-auto">
+        <table className="w-full caption-bottom text-sm">
+          <thead className="[&_tr]:border-b">
+            <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Cliente</th>
+              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Tipo</th>
+              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Plazo Pago</th>
+              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Contacto</th>
+              <th className="h-10 px-4 text-right align-middle font-medium text-muted-foreground"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="[&_tr:last-child]:border-0">
+            {CLIENTS.map((client) => (
+              <tr key={client.id} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <td className="p-4 align-middle">
+                  <div className="font-medium flex items-center gap-2">
+                    <Building className="h-4 w-4 text-muted-foreground" />
+                    {client.name}
+                  </div>
+                </td>
+                <td className="p-4 align-middle text-muted-foreground">{client.type}</td>
+                <td className="p-4 align-middle">
+                  <span className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10">
+                    {client.term}
+                  </span>
+                </td>
+                <td className="p-4 align-middle">
+                  <div>{client.contact}</div>
+                  <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
+                    <Mail className="h-3 w-3" /> {client.email}
+                  </div>
+                </td>
+                <td className="p-4 align-middle text-right">
+                  <button className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-transparent bg-transparent text-sm font-medium shadow-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                    <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

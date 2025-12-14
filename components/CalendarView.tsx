@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Truck, RotateCcw } from 'lucide-react';
-import styles from './CalendarView.module.css';
+import { cn } from '@/lib/utils';
 
 const EVENTS = [
   { id: 1, day: 5, title: 'Entrega: Sanatorio Central', type: 'delivery' },
@@ -19,40 +18,70 @@ export default function CalendarView() {
   const startOffset = 5; // Friday 1st
 
   return (
-    <div className="card" style={{ padding: 0 }}>
+    <div className="rounded-md border bg-card">
       {/* Calendar Header */}
-      <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)' }}>
-        <h2 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Diciembre 2023</h2>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button className="btn" style={{ padding: '0.25rem' }}><ChevronLeft size={20} /></button>
-          <button className="btn" style={{ padding: '0.25rem' }}><ChevronRight size={20} /></button>
-          <button className="btn btn-primary">Hoy</button>
+      <div className="flex items-center justify-between border-b p-4">
+        <h2 className="text-xl font-semibold">Diciembre 2023</h2>
+        <div className="flex gap-2">
+          <button className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
+            <ChevronRight className="h-4 w-4" />
+          </button>
+          <button className="inline-flex h-8 items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
+            Hoy
+          </button>
         </div>
       </div>
 
       {/* Days Header */}
-      <div className={styles.gridHeader}>
-        {['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'].map(day => (
-          <div key={day} className={styles.dayHeader}>{day}</div>
+      <div className="grid grid-cols-7 border-b">
+        {['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'].map((day, i) => (
+          <div 
+            key={day} 
+            className={cn(
+              "px-3 py-3 text-center text-sm font-semibold text-muted-foreground",
+              i !== 6 && "border-r"
+            )}
+          >
+            {day}
+          </div>
         ))}
       </div>
 
       {/* Days Grid */}
-      <div className={styles.grid}>
+      <div className="grid grid-cols-7">
         {Array.from({ length: startOffset }).map((_, i) => (
-          <div key={`empty-${i}`} className={styles.dayEmpty}></div>
+          <div key={`empty-${i}`} className="min-h-[120px] border-b border-r p-2 bg-muted/20"></div>
         ))}
         
-        {days.map(day => {
+        {days.map((day, index) => {
           const dayEvents = EVENTS.filter(e => e.day === day);
+          const isLastColumn = (index + startOffset + 1) % 7 === 0;
+          
           return (
-            <div key={day} className={styles.day}>
-              <div className={styles.dayNumber}>{day}</div>
-              <div className={styles.events}>
+            <div 
+              key={day} 
+              className={cn(
+                "min-h-[120px] border-b p-2 transition-colors hover:bg-muted/30",
+                !isLastColumn && "border-r"
+              )}
+            >
+              <div className="mb-2 text-sm font-medium text-muted-foreground">{day}</div>
+              <div className="flex flex-col gap-1">
                 {dayEvents.map(event => (
-                  <div key={event.id} className={`${styles.event} ${event.type === 'delivery' ? styles.delivery : styles.returnItem}`}>
-                    {event.type === 'delivery' ? <Truck size={12} /> : <RotateCcw size={12} />}
-                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.title}</span>
+                  <div 
+                    key={event.id} 
+                    className={cn(
+                      "flex items-center gap-1 rounded px-2 py-1 text-xs font-medium cursor-pointer transition-opacity hover:opacity-80",
+                      event.type === 'delivery' 
+                        ? "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300" 
+                        : "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300"
+                    )}
+                  >
+                    {event.type === 'delivery' ? <Truck className="h-3 w-3" /> : <RotateCcw className="h-3 w-3" />}
+                    <span className="truncate">{event.title}</span>
                   </div>
                 ))}
               </div>
