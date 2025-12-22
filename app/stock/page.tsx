@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { Button } from "@/components/ui/button";
 import { Download, Plus, Upload } from 'lucide-react';
 import StockTable from '@/components/StockTable';
+import { StockActions } from '@/components/StockActions';
 
 export default function StockPage() {
   return (
@@ -19,10 +20,7 @@ export default function StockPage() {
               <Download className="mr-2 h-4 w-4" />
               Exportar
             </Button>
-            <Button>
-              <Plus className="mr-2 h-4 w-4" />
-              Nuevo Insumo
-            </Button>
+            <StockActions />
           </>
         }
       />

@@ -10,21 +10,26 @@ import {
   Calendar, 
   Users, 
   Settings, 
-  LogOut
+  LogOut,
+  FileText
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
   { label: 'Tablero Principal', href: '/', icon: LayoutDashboard },
   { label: 'Stock e Insumos', href: '/stock', icon: Package },
+  { label: 'Cotizaciones', href: '/quotations', icon: FileText },
   { label: 'Cajas Quirúrgicas', href: '/kits', icon: Box },
   { label: 'Facturación Y Cobros', href: '/invoices', icon: Receipt },
   { label: 'Logística y Agenda', href: '/calendar', icon: Calendar },
   { label: 'Clientes', href: '/clients', icon: Users },
 ];
 
+import { useAuth } from '@/contexts/AuthContext';
+
 export default function Sidebar() {
   const pathname = usePathname();
+  const { logout } = useAuth(); // Hook usage
 
   return (
     <aside className="hidden h-screen w-64 flex-col border-r bg-slate-900 text-white md:flex fixed left-0 top-0 z-50">
@@ -85,7 +90,10 @@ export default function Sidebar() {
       </nav>
 
       <div className="border-t border-slate-800 p-4">
-        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-800 hover:text-white">
+        <button 
+          onClick={logout}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+        >
           <LogOut className="h-5 w-5" />
           <span>Cerrar Sesión</span>
         </button>

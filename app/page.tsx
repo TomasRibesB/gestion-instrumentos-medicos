@@ -6,6 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from "@/components/ui/table";
 
 export default function Home() {
   return (
@@ -14,7 +22,7 @@ export default function Home() {
         title="Tablero Principal" 
         description="Resumen general de operaciones"
         actions={
-          <>
+          <div className="flex gap-2">
             <Button>
               <Plus className="mr-2 h-4 w-4" />
               Nuevo Ingreso
@@ -23,7 +31,7 @@ export default function Home() {
               <Plus className="mr-2 h-4 w-4" />
               Nueva Factura
             </Button>
-          </>
+          </div>
         }
       />
 
@@ -75,42 +83,50 @@ export default function Home() {
         
         <CardContent className="p-0">
           <div className="relative w-full overflow-auto">
-            <table className="w-full caption-bottom text-sm">
-              <thead className="[&_tr]:border-b">
-                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Fecha</th>
-                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Cliente</th>
-                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Caja/Kit</th>
-                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Estado</th>
-                </tr>
-              </thead>
-              <tbody className="[&_tr:last-child]:border-0">
-                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                  <td className="p-4 align-middle">10 Dic - 09:00</td>
-                  <td className="p-4 align-middle">Sanatorio Central</td>
-                  <td className="p-4 align-middle">Kit Cadera #45</td>
-                  <td className="p-4 align-middle">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Fecha</TableHead>
+                  <TableHead>Cliente</TableHead>
+                  <TableHead>Caja/Kit</TableHead>
+                  <TableHead>Estado</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>10 Dic - 09:00</TableCell>
+                  <TableCell>Sanatorio Central</TableCell>
+                  <TableCell>Kit Cadera #45</TableCell>
+                  <TableCell>
                     <Badge variant="info">Programado</Badge>
-                  </td>
-                </tr>
-                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                  <td className="p-4 align-middle">11 Dic - 14:30</td>
-                  <td className="p-4 align-middle">Hosp. Italiano</td>
-                  <td className="p-4 align-middle">Caja Trauma A</td>
-                  <td className="p-4 align-middle">
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>11 Dic - 14:30</TableCell>
+                  <TableCell>Hosp. Italiano</TableCell>
+                  <TableCell>Caja Trauma A</TableCell>
+                  <TableCell>
                     <Badge variant="warning">Pendiente prep.</Badge>
-                  </td>
-                </tr>
-                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                  <td className="p-4 align-middle">12 Dic - 11:00</td>
-                  <td className="p-4 align-middle">Clínica del Valle</td>
-                  <td className="p-4 align-middle">Insumos Varios</td>
-                  <td className="p-4 align-middle">
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>12 Dic - 11:00</TableCell>
+                  <TableCell>Clínica del Valle</TableCell>
+                  <TableCell>Insumos Varios</TableCell>
+                  <TableCell>
                     <Badge variant="success">Listo</Badge>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>14 Dic - 08:30</TableCell>
+                  <TableCell>Sanatorio Allende</TableCell>
+                  <TableCell>Placas Bloqueadas</TableCell>
+                  <TableCell>
+                    <Badge variant="outline">Consultar</Badge>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>
         </CardContent>
       </Card>

@@ -1,6 +1,22 @@
 'use client';
 
 import { MoreHorizontal, Shield } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const USERS = [
   { id: 1, name: 'Juan Director', email: 'juan@empresa.com', role: 'Admin', status: 'Active' },
@@ -13,40 +29,48 @@ export default function UserTable() {
   return (
     <div className="rounded-md border bg-card">
       <div className="relative w-full overflow-auto">
-        <table className="w-full caption-bottom text-sm">
-          <thead className="[&_tr]:border-b">
-            <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Usuario</th>
-              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Email</th>
-              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Rol</th>
-              <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground">Estado</th>
-              <th className="h-10 px-4 text-right align-middle font-medium text-muted-foreground"></th>
-            </tr>
-          </thead>
-          <tbody className="[&_tr:last-child]:border-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Usuario</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Rol</TableHead>
+              <TableHead>Estado</TableHead>
+              <TableHead className="text-right"></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {USERS.map((user) => (
-              <tr key={user.id} className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td className="p-4 align-middle font-medium">{user.name}</td>
-                <td className="p-4 align-middle">{user.email}</td>
-                <td className="p-4 align-middle">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-purple-100 px-2 py-1 text-xs font-medium text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+              <TableRow key={user.id}>
+                <TableCell className="font-medium">{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>
+                  <Badge variant="secondary" className="gap-1">
                     <Shield className="h-3 w-3" /> {user.role}
-                  </span>
-                </td>
-                <td className="p-4 align-middle">
-                  <span className="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-900/30 dark:text-green-300">
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <Badge variant="success">
                     {user.status}
-                  </span>
-                </td>
-                <td className="p-4 align-middle text-right">
-                  <button className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-transparent bg-transparent text-sm font-medium shadow-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                    <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
-                  </button>
-                </td>
-              </tr>
+                  </Badge>
+                </TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>Editar</DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-600">Desactivar</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

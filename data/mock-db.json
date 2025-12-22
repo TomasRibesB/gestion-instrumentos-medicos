@@ -1,0 +1,336 @@
+{
+    "roles": [
+        {
+            "id": 1,
+            "name": "Admin",
+            "description": "Acceso total",
+            "permissions": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Cotizador",
+            "description": "Ventas y Presupuestos",
+            "permissions": [
+                1,
+                2
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Tecnico",
+            "description": "Cirugías y Consumos",
+            "permissions": [
+                3
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Logistico",
+            "description": "Depósito y Despachos",
+            "permissions": [
+                4
+            ]
+        }
+    ],
+    "permissions": [
+        {
+            "id": 1,
+            "slug": "quotation:create",
+            "description": "Crear presupuestos",
+            "module": "FINANZAS"
+        },
+        {
+            "id": 2,
+            "slug": "finance:view_profit",
+            "description": "Ver rentabilidad",
+            "module": "FINANZAS"
+        },
+        {
+            "id": 3,
+            "slug": "surgery:consume",
+            "description": "Cargar consumos",
+            "module": "OPERACIONES"
+        },
+        {
+            "id": 4,
+            "slug": "stock:manage",
+            "description": "Gestión de inventario",
+            "module": "STOCK"
+        },
+        {
+            "id": 5,
+            "slug": "users:manage",
+            "description": "ABM Usuarios",
+            "module": "SISTEMA"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "username": "admin",
+            "email": "admin@tdm.com",
+            "password_hash": "admin123",
+            "first_name": "Admin",
+            "last_name": "Sistema",
+            "role_id": 1,
+            "is_active": true,
+            "created_at": "2023-01-01T00:00:00Z"
+        },
+        {
+            "id": 2,
+            "username": "comercial",
+            "email": "vendedor@tdm.com",
+            "password_hash": "vend123",
+            "first_name": "Juan",
+            "last_name": "Ventas",
+            "role_id": 2,
+            "is_active": true,
+            "created_at": "2023-01-02T00:00:00Z"
+        },
+        {
+            "id": 3,
+            "username": "tecnico",
+            "email": "tecnico@tdm.com",
+            "password_hash": "tec123",
+            "first_name": "Pedro",
+            "last_name": "Quirófano",
+            "role_id": 3,
+            "is_active": true,
+            "created_at": "2023-01-03T00:00:00Z"
+        },
+        {
+            "id": 4,
+            "username": "logistica",
+            "email": "deposito@tdm.com",
+            "password_hash": "depo123",
+            "first_name": "Laura",
+            "last_name": "Logística",
+            "role_id": 4,
+            "is_active": true,
+            "created_at": "2023-01-04T00:00:00Z"
+        }
+    ],
+    "clients": [
+        {
+            "id": 1,
+            "business_name": "OSDE",
+            "cuit": "30-11111111-1",
+            "payment_terms_days": 30,
+            "email_contact": "pagos@osde.com.ar",
+            "phone": "0810-555-6733",
+            "active": true
+        },
+        {
+            "id": 2,
+            "business_name": "Swiss Medical",
+            "cuit": "30-22222222-2",
+            "payment_terms_days": 45,
+            "email_contact": "facturacion@swiss.com",
+            "phone": "0810-444-7700",
+            "active": true
+        },
+        {
+            "id": 3,
+            "business_name": "Hospital Italiano",
+            "cuit": "30-33333333-3",
+            "payment_terms_days": 60,
+            "email_contact": "compras@hospitalitaliano.org.ar",
+            "phone": "011-4959-0200",
+            "active": true
+        }
+    ],
+    "doctors": [
+        {
+            "id": 1,
+            "full_name": "Dr. René Favaloro",
+            "license_number": "MN 12345",
+            "phone": "11-1111-1111"
+        },
+        {
+            "id": 2,
+            "full_name": "Dr. Conrado Estol",
+            "license_number": "MN 67890",
+            "phone": "11-2222-2222"
+        }
+    ],
+    "institutions": [
+        {
+            "id": 1,
+            "name": "Sanatorio de la Trinidad",
+            "address": "Palermo, CABA",
+            "location_city": "CABA"
+        },
+        {
+            "id": 2,
+            "name": "Hospital Austral",
+            "address": "Pilar, Buenos Aires",
+            "location_city": "Pilar"
+        }
+    ],
+    "patients": [
+        {
+            "id": 1,
+            "full_name": "Lionel Messi",
+            "dni": "30.123.456",
+            "client_id": 1
+        },
+        {
+            "id": 2,
+            "full_name": "Angel Di Maria",
+            "dni": "31.654.321",
+            "client_id": 2
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "sku": "TOR-TI-35",
+            "name": "Tornillo Titanio 3.5mm",
+            "description": "Tornillo de cortical autorroscante",
+            "barcode_base": "779001",
+            "is_asset": false,
+            "requires_sterilization": true,
+            "min_stock_alert": 50,
+            "category": "Traumatología"
+        },
+        {
+            "id": 2,
+            "sku": "PLA-LCP-TIB",
+            "name": "Placa Tibia Distal LCP",
+            "description": "Placa bloqueada anatómica",
+            "barcode_base": "779002",
+            "is_asset": false,
+            "requires_sterilization": true,
+            "min_stock_alert": 10,
+            "category": "Traumatología"
+        },
+        {
+            "id": 3,
+            "sku": "SUT-VIC-30",
+            "name": "Sutura Vicryl 3-0",
+            "description": "Caja x 12 unidades",
+            "barcode_base": "779003",
+            "is_asset": false,
+            "requires_sterilization": false,
+            "min_stock_alert": 20,
+            "category": "Suturas"
+        },
+        {
+            "id": 4,
+            "sku": "KIT-MOTOR-01",
+            "name": "Motor de Hemodinamia",
+            "description": "Unidad de poder + piezas de mano",
+            "barcode_base": "779999",
+            "is_asset": true,
+            "requires_sterilization": true,
+            "min_stock_alert": 2,
+            "category": "Equipamiento"
+        },
+        {
+            "id": 5,
+            "sku": "MESH-1515",
+            "name": "Malla Quirúrgica 15x15",
+            "description": "Polipropileno monofilamento",
+            "barcode_base": "779005",
+            "is_asset": false,
+            "requires_sterilization": false,
+            "min_stock_alert": 30,
+            "category": "General"
+        }
+    ],
+    "inventory": [
+        {
+            "id": 1,
+            "product_id": 1,
+            "lot_number": "L-2023-A",
+            "expiration_date": "2025-12-01T00:00:00Z",
+            "quantity": 120,
+            "current_location": "DEPOSITO",
+            "barcode_full": "779001-L-2023-A"
+        },
+        {
+            "id": 2,
+            "product_id": 1,
+            "lot_number": "L-2022-B",
+            "expiration_date": "2024-01-15T00:00:00Z",
+            "quantity": 15,
+            "current_location": "DEPOSITO",
+            "barcode_full": "779001-L-2022-B"
+        },
+        {
+            "id": 3,
+            "product_id": 2,
+            "lot_number": "PLA-001",
+            "expiration_date": "2026-06-01T00:00:00Z",
+            "quantity": 35,
+            "current_location": "DEPOSITO",
+            "barcode_full": "779002-PLA-001"
+        },
+        {
+            "id": 4,
+            "product_id": 4,
+            "serial_number": "SN-98765",
+            "expiration_date": "2030-01-01T00:00:00Z",
+            "quantity": 1,
+            "current_location": "DEPOSITO",
+            "barcode_full": "779999-SN-98765"
+        }
+    ],
+    "movements": [],
+    "quotations": [
+        {
+            "id": 1,
+            "client_id": 1,
+            "doctor_id": 1,
+            "patient_id": 1,
+            "institution_id": 1,
+            "created_by_user_id": 2,
+            "created_at": "2023-11-20T10:00:00Z",
+            "status": "APPROVED",
+            "total_client_price": 5000,
+            "total_internal_cost": 3000,
+            "estimated_profit": 2000,
+            "valid_until": "2023-12-20",
+            "items": [
+                {
+                    "id": 1,
+                    "quotation_id": 1,
+                    "product_id": 2,
+                    "quantity_estimated": 1,
+                    "unit_sale_price": 4500,
+                    "unit_internal_cost": 2800
+                },
+                {
+                    "id": 2,
+                    "quotation_id": 1,
+                    "product_id": 1,
+                    "quantity_estimated": 10,
+                    "unit_sale_price": 50,
+                    "unit_internal_cost": 20
+                }
+            ],
+            "additional_costs": []
+        }
+    ],
+    "surgeries": [
+        {
+            "id": 1,
+            "quotation_id": 1,
+            "surgery_date": "2023-12-10T09:00:00Z",
+            "institution_id": 1,
+            "assigned_technician_id": 3,
+            "status": "PROGRAMADA",
+            "surgery_type": "Traumatologia - Cadera",
+            "created_at": "2023-11-25T14:00:00Z"
+        }
+    ],
+    "dispatches": [],
+    "consumption_reports": [],
+    "billings": []
+}

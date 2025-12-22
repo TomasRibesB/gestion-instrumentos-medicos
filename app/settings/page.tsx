@@ -1,5 +1,9 @@
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { Bell, User, Monitor } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 
 export default function SettingsPage() {
   return (
@@ -11,75 +15,69 @@ export default function SettingsPage() {
 
       <div className="grid gap-6">
         {/* Appearance Section */}
-        <div className="rounded-lg border bg-card p-6 shadow-sm">
-          <div className="flex items-center gap-2 mb-4">
-            <Monitor className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold">Apariencia</h2>
-          </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="font-medium">Tema</div>
-              <div className="text-sm text-muted-foreground">Selecciona el tema de la aplicación (Claro/Oscuro)</div>
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <Monitor className="h-5 w-5 text-primary" />
+              <CardTitle>Apariencia</CardTitle>
             </div>
-            <ThemeToggle />
-          </div>
-        </div>
-
-        {/* Notifications Section (Mock) */}
-        <div className="rounded-lg border bg-card p-6 shadow-sm">
-          <div className="flex items-center gap-2 mb-4">
-            <Bell className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold">Notificaciones</h2>
-          </div>
-          <div className="space-y-4">
+          </CardHeader>
+          <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <div className="font-medium">Alertas por Email</div>
+                <div className="font-medium">Tema</div>
+                <div className="text-sm text-muted-foreground">Selecciona el tema de la aplicación (Claro/Oscuro)</div>
+              </div>
+              <ThemeToggle />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Notifications Section (Mock) */}
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <Bell className="h-5 w-5 text-primary" />
+              <CardTitle>Notificaciones</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="email-notifications" className="font-medium">Alertas por Email</Label>
                 <div className="text-sm text-muted-foreground">Recibe alertas sobre facturas vencidas</div>
               </div>
-              <div className="h-6 w-11 rounded-full bg-primary p-1">
-                <div className="h-4 w-4 rounded-full bg-white shadow-sm translate-x-5 transition-transform" />
-              </div>
+              <Switch id="email-notifications" defaultChecked />
             </div>
             <div className="flex items-center justify-between border-t pt-4">
               <div>
-                <div className="font-medium">Notificaciones de Stock</div>
+                <Label htmlFor="stock-notifications" className="font-medium">Notificaciones de Stock</Label>
                 <div className="text-sm text-muted-foreground">Avisos cuando el stock llegue al mínimo</div>
               </div>
-              <div className="h-6 w-11 rounded-full bg-primary p-1">
-                <div className="h-4 w-4 rounded-full bg-white shadow-sm translate-x-5 transition-transform" />
-              </div>
+              <Switch id="stock-notifications" defaultChecked />
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Account Section (Mock) */}
-        <div className="rounded-lg border bg-card p-6 shadow-sm">
-          <div className="flex items-center gap-2 mb-4">
-            <User className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold">Cuenta</h2>
-          </div>
-          <div className="space-y-4">
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <User className="h-5 w-5 text-primary" />
+              <CardTitle>Cuenta</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
             <div className="grid gap-2">
-              <label className="text-sm font-medium">Nombre de Usuario</label>
-              <input 
-                type="text" 
-                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                value="Juan Pérez" 
-                readOnly
-              />
+              <Label>Nombre de Usuario</Label>
+              <Input value="Juan Pérez" readOnly />
             </div>
             <div className="grid gap-2">
-              <label className="text-sm font-medium">Email</label>
-              <input 
-                type="email" 
-                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                value="juan.perez@gestion.com" 
-                readOnly
-              />
+              <Label>Email</Label>
+              <Input value="juan.perez@gestion.com" readOnly />
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
       </div>
     </div>
